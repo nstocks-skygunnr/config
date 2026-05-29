@@ -26,6 +26,7 @@
 #define BOARD_NAME           GUNNRH7V1
 #define MANUFACTURER_ID      SKYG
 
+#define USE_TIMER_MAP_PRINT
 
 #define USE_ACC
 #define USE_ACC_SPI_ICM42688P
@@ -104,13 +105,20 @@
 #define SPI2_SCK_PIN         PD3
 #define SPI4_SCK_PIN         PE12
 
-#define SPI1_SDI_PIN         PD7 //MOSI?
+#define SPI1_SDI_PIN         PB4 //MOSI?
 #define SPI2_SDI_PIN         PC3 //why _C on schematic
 #define SPI4_SDI_PIN         PE14
 
-#define SPI1_SDO_PIN         PB4 //MISO?
+#define SPI1_SDO_PIN         PD7 //MISO?
 #define SPI2_SDO_PIN         PC2
 #define SPI4_SDO_PIN         PE13
+
+#define SDIO_CK_PIN          PC12
+#define SDIO_CMD_PIN         PD2
+#define SDIO_D0_PIN          PC8
+#define SDIO_D1_PIN          PC9
+#define SDIO_D2_PIN          PC10
+#define SDIO_D3_PIN          PC11
 
 //#define CAMERA_CONTROL_PIN   PA3
 #define ADC_VBAT_PIN         PA7
@@ -118,23 +126,29 @@
 //#define ADC_CURR_PIN         PC1
 //#define ADC_EXTERNAL1_PIN    PC4    // Airspeed
 
-/*
-#define SDCARD_SPI_CS_PIN    PB11   // SPI2_NSS
-#define SDCARD_DETECT_PIN    PE15 // NO DETECT PIN??
-*/
+
+//#define SDCARD_SPI_CS_PIN    PB11   // SPI2_NSS
+#define SDCARD_DETECT_PIN    NONE 
+#define SDIO_DEVICE SDIODEV_1
+#define SDIO_USE_4BIT 1
+
 #define PINIO1_PIN           PE2    // J5 PIN6
 #define PINIO2_PIN           PE3    // J5 PIN7
 #define PINIO3_PIN           PD10    // Camera Select
 #define PINIO4_PIN           PD11    // V10P0 EN
-/*
+
 //#define FLASH_CS_PIN         PA4    // SPI1_NSS
-#define MAX7456_SPI_CS_PIN   PE4    // SPI4_NSS
-#define GYRO_1_EXTI_PIN      PC13   // ICM-42688-P INT
-#define GYRO_1_CS_PIN        PD7    // ICM-42688-P SPI6_NSS
-#define GYRO_2_EXTI_PIN      PD10   // ICM-45686 INT
-#define GYRO_2_CS_PIN        PA15   // ICM-45686 SPI3_NSS
-#define USB_DETECT_PIN       PD2
-*/
+
+#define MAX7456_SPI_CS_PIN   PD4    // SPI4_NSS
+
+#define GYRO_1_EXTI_PIN      PB5   // ICM-42688-P INT
+#define GYRO_1_CS_PIN        PB2    // ICM-42688-P SPI6_NSS
+
+#define GYRO_2_EXTI_PIN      PB1   // ICM-45686 INT
+#define GYRO_2_CS_PIN        PE15   // ICM-45686 SPI3_NSS
+
+//#define USB_DETECT_PIN       PD2
+
 /*
     PE9  - TIM1_CH1
     PE11 - TIM1_CH2
@@ -155,16 +169,16 @@
 */
 
 #define TIMER_PIN_MAPPING \
-    /*TIMER_PIN_MAP( 0,  NULL,          1, -1) \*/
-    /*TIMER_PIN_MAP( 1,  NULL,          1, -1) \*/
+    /*TIMER_PIN_MAP( 0,  NULL,          1, -1) */ \
+    /*TIMER_PIN_MAP( 1,  NULL,          1, -1) */ \
     TIMER_PIN_MAP( 2,  MOTOR1_PIN,          1, -1) \
     TIMER_PIN_MAP( 3,  MOTOR2_PIN,          1, -1) \
     TIMER_PIN_MAP( 4,  MOTOR3_PIN,          1, -1) \
     TIMER_PIN_MAP( 5,  MOTOR4_PIN,          1, -1) \
-    /*TIMER_PIN_MAP( 6,  NULL,          1, -1) \*/
-    /*TIMER_PIN_MAP( 7,  NULL,          1, -1) \*/
-    /*TIMER_PIN_MAP( 8,  NULL,          1, -1) \*/
-    /*TIMER_PIN_MAP( 9,  NULL,          1, -1) \*/
+    /*TIMER_PIN_MAP( 6,  NULL,          1, -1) */ \
+    /*TIMER_PIN_MAP( 7,  NULL,          1, -1) */ \
+    /*TIMER_PIN_MAP( 8,  NULL,          1, -1) */ \
+    /*TIMER_PIN_MAP( 9,  NULL,          1, -1) */ \
     TIMER_PIN_MAP( 10, MOTOR5_PIN,          1, -1) \
     TIMER_PIN_MAP( 11, MOTOR6_PIN,          1, -1) \
     TIMER_PIN_MAP( 12, MOTOR7_PIN,          1, -1) \
@@ -178,7 +192,7 @@
 #define TIMUP8_DMA_OPT                      13
 
 #define MAG_I2C_INSTANCE                    I2CDEV_1
-#define BARO_I2C_INSTANCE                   I2CDEV_1
+#define BARO_I2C_INSTANCE                   I2CDEV_2
 #define DEFAULT_BARO_I2C_ADDRESS            118
 
 #define DEFAULT_BLACKBOX_DEVICE             BLACKBOX_DEVICE_FLASH
@@ -188,12 +202,12 @@
 #define BEEPER_INVERTED
 
 #define DEFAULT_GYRO_TO_USE                 GYRO_CONFIG_USE_GYRO_1
-#define GYRO_1_SPI_INSTANCE                 SPI6
+#define GYRO_1_SPI_INSTANCE                 SPI1
 #define GYRO_1_ALIGN                        CW270_DEG_FLIP
-#define GYRO_2_SPI_INSTANCE                 SPI3
+#define GYRO_2_SPI_INSTANCE                 SPI4
 #define GYRO_2_ALIGN                        CW180_DEG_FLIP
 //#define FLASH_SPI_INSTANCE                  SPI1
-#define MAX7456_SPI_INSTANCE                SPI4
+#define MAX7456_SPI_INSTANCE                SPI2
 #define SDCARD_SPI_INSTANCE                 SPI2
 //#define SDCARD_DETECT_INVERTED
 
