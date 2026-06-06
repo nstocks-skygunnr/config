@@ -32,64 +32,30 @@
 #define USE_ACC_SPI_ICM42688P
 #define USE_GYRO
 #define USE_GYRO_SPI_ICM42688P
-
-#define USE_BARO_DPS368
+#define USE_BARO
+//#define USE_BARO_DPS368
+#define USE_BARO_DPS310
 #define USE_SDCARD
-
-#define USE_MAX7456 // OSD
-
-/* no magnetometer?
-#ifndef USE_MAG
-#define USE_MAG
-#endif
-*/
-
-/* don't need cause part of IMU??
-#ifndef USE_GPS
-#define USE_GPS
-#endif
-*/
+#define USE_MAX7456
 
 /*
 #define USE_GYRO_CLKIN
-#define GYRO_1_CLKIN_PIN     PB15
+#define GYRO_1_CLKIN_PIN     PA6
+#define GYRO_2_CLKIN_PIN	PB0
 */
 
-#define BEEPER_PIN           PB14
-
-// ESC1 - TIM2
-#define MOTOR1_PIN           PA0
-#define MOTOR2_PIN           PA1
-#define MOTOR3_PIN           PA2
-#define MOTOR4_PIN           PA3
-
-// ESC2 - TIM4
-#define MOTOR5_PIN           PD12
-#define MOTOR6_PIN           PD13
-#define MOTOR7_PIN           PD14
-#define MOTOR8_PIN           PD15
-
-/* Don't use but verify
-#define SERVO1_PIN           PD12
-#define SERVO2_PIN           PD13
-#define SERVO3_PIN           PD14
-#define SERVO4_PIN           PD15
-*/
-
-#define LED_STRIP_PIN        PE5 
 
 #define UART1_TX_PIN         PA9
-#define UART2_TX_PIN         PD5
-#define UART4_TX_PIN         PD1
-#define UART6_TX_PIN         PC6
-#define UART7_TX_PIN         PA15
-#define UART8_TX_PIN         PE1
-
 #define UART1_RX_PIN         PA10
+#define UART2_TX_PIN         PD5
 #define UART2_RX_PIN         PD6
+#define UART4_TX_PIN         PD1
 #define UART4_RX_PIN         PD0
+#define UART6_TX_PIN         PC6
 #define UART6_RX_PIN         PC7
+#define UART7_TX_PIN         PA15
 #define UART7_RX_PIN         PA8
+#define UART8_TX_PIN         PE1
 #define UART8_RX_PIN         PE0
 
 #define I2C1_SCL_PIN         PB8
@@ -101,17 +67,17 @@
 #define LED1_PIN             PE7
 #define LED2_PIN             PE8
 
+#define SPI1_SDI_PIN         PB4
+#define SPI1_SDO_PIN         PD7
 #define SPI1_SCK_PIN         PB3
+
+#define SPI2_SDI_PIN         PC2
+#define SPI2_SDO_PIN         PC3
 #define SPI2_SCK_PIN         PD3
+
+#define SPI4_SDI_PIN         PE13
+#define SPI4_SDO_PIN         PE14
 #define SPI4_SCK_PIN         PE12
-
-#define SPI1_SDI_PIN         PB4 //MOSI?
-#define SPI2_SDI_PIN         PC3 //why _C on schematic
-#define SPI4_SDI_PIN         PE14
-
-#define SPI1_SDO_PIN         PD7 //MISO?
-#define SPI2_SDO_PIN         PC2
-#define SPI4_SDO_PIN         PE13
 
 #define SDIO_CK_PIN          PC12
 #define SDIO_CMD_PIN         PD2
@@ -120,24 +86,19 @@
 #define SDIO_D2_PIN          PC10
 #define SDIO_D3_PIN          PC11
 
-//#define CAMERA_CONTROL_PIN   PA3
 #define ADC_VBAT_PIN         PA7
-//#define ADC_RSSI_PIN         PC5
-//#define ADC_CURR_PIN         PC1
+#define ADC_CURR_PIN         PC5
 //#define ADC_EXTERNAL1_PIN    PC4    // Airspeed
 
-
-//#define SDCARD_SPI_CS_PIN    PB11   // SPI2_NSS
 #define SDCARD_DETECT_PIN    NONE 
-#define SDIO_DEVICE SDIODEV_1
+#define SDIO_DEVICE 		SDIODEV_1
 #define SDIO_USE_4BIT 1
+#define DEFAULT_BLACKBOX_DEVICE             BLACKBOX_DEVICE_SDCARD
 
 #define PINIO1_PIN           PE2    // J5 PIN6
 #define PINIO2_PIN           PE3    // J5 PIN7
 #define PINIO3_PIN           PD10    // Camera Select
 #define PINIO4_PIN           PD11    // V10P0 EN
-
-//#define FLASH_CS_PIN         PA4    // SPI1_NSS
 
 #define MAX7456_SPI_CS_PIN   PD4    // SPI4_NSS
 
@@ -146,8 +107,6 @@
 
 #define GYRO_2_EXTI_PIN      PB1   // ICM-45686 INT
 #define GYRO_2_CS_PIN        PE15   // ICM-45686 SPI3_NSS
-
-//#define USB_DETECT_PIN       PD2
 
 /*
     PE9  - TIM1_CH1
@@ -168,52 +127,77 @@
     PE5  - TIM15_CH1
 */
 
-#define TIMER_PIN_MAPPING \
-    /*TIMER_PIN_MAP( 0,  NULL,          1, -1) */ \
-    /*TIMER_PIN_MAP( 1,  NULL,          1, -1) */ \
-    TIMER_PIN_MAP( 2,  MOTOR1_PIN,          1, -1) \
-    TIMER_PIN_MAP( 3,  MOTOR2_PIN,          1, -1) \
-    TIMER_PIN_MAP( 4,  MOTOR3_PIN,          1, -1) \
-    TIMER_PIN_MAP( 5,  MOTOR4_PIN,          1, -1) \
-    /*TIMER_PIN_MAP( 6,  NULL,          1, -1) */ \
-    /*TIMER_PIN_MAP( 7,  NULL,          1, -1) */ \
-    /*TIMER_PIN_MAP( 8,  NULL,          1, -1) */ \
-    /*TIMER_PIN_MAP( 9,  NULL,          1, -1) */ \
-    TIMER_PIN_MAP( 10, MOTOR5_PIN,          1, -1) \
-    TIMER_PIN_MAP( 11, MOTOR6_PIN,          1, -1) \
-    TIMER_PIN_MAP( 12, MOTOR7_PIN,          1, -1) \
-    TIMER_PIN_MAP( 13, MOTOR8_PIN,       1, -1) \
-    TIMER_PIN_MAP( 14, BEEPER_PIN,          1, -1) \
-    TIMER_PIN_MAP( 15, LED_STRIP_PIN,       1, -1)
+// ESC1 - TIM2
+#define MOTOR1_PIN           PA0
+#define MOTOR2_PIN           PA1
+#define MOTOR3_PIN           PA2
+#define MOTOR4_PIN           PA3
 
-#define ADC1_DMA_OPT                        8
-#define ADC3_DMA_OPT                        10
-#define TIMUP1_DMA_OPT                      12
-#define TIMUP8_DMA_OPT                      13
+// ESC2 - TIM4
+#define MOTOR5_PIN           PD12
+#define MOTOR6_PIN           PD13
+#define MOTOR7_PIN           PD14
+#define MOTOR8_PIN           PD15
+
+// Servo Pins - TIM1
+#define SERVO1_PIN           PE9
+#define SERVO2_PIN           PE11
+
+#define BEEPER_PIN           PB14
+#define LED_STRIP_PIN        PE5 
+
+#define TIMER_PIN_MAPPING \
+    TIMER_PIN_MAP( 0,  MOTOR1_PIN,       1, 0 ) \
+    TIMER_PIN_MAP( 1,  MOTOR2_PIN,       1, 1 ) \
+    TIMER_PIN_MAP( 2,  MOTOR3_PIN,       1, 2 ) \
+    TIMER_PIN_MAP( 3,  MOTOR4_PIN,       1, 3 ) \
+    TIMER_PIN_MAP( 4,  MOTOR5_PIN,       1, 4 ) \
+    TIMER_PIN_MAP( 5,  MOTOR6_PIN,       1, 5 ) \
+    TIMER_PIN_MAP( 6,  MOTOR7_PIN,       1, 6 ) \
+    TIMER_PIN_MAP( 7,  MOTOR8_PIN,       1, 7 ) \
+	TIMER_PIN_MAP( 8,  SERVO1_PIN,		 1, -1) \
+	TIMER_PIN_MAP( 9,  SERVO2_PIN,		 1, -1) \
+    TIMER_PIN_MAP( 10, LED_STRIP_PIN,	 1, 8 ) \
+	TIMER_PIN_MAP( 11, BEEPER_PIN,       2, -1)
+
+#define ADC1_DMA_OPT        				9
+//#define ADC3_DMA_OPT       					10
+#define TIMUP3_DMA_OPT     					11
+#define TIMUP4_DMA_OPT     					12
+//#define TIMUP5_DMA_OPT     					13
 
 #define MAG_I2C_INSTANCE                    I2CDEV_1
 #define BARO_I2C_INSTANCE                   I2CDEV_2
-#define DEFAULT_BARO_I2C_ADDRESS            118
+//#define DEFAULT_BARO_I2C_ADDRESS            118
 
-#define DEFAULT_BLACKBOX_DEVICE             BLACKBOX_DEVICE_FLASH
 #define DEFAULT_CURRENT_METER_SOURCE        CURRENT_METER_ADC
 #define DEFAULT_VOLTAGE_METER_SOURCE        VOLTAGE_METER_ADC
 #define DEFAULT_CURRENT_METER_SCALE         85
 #define BEEPER_INVERTED
 
-#define DEFAULT_GYRO_TO_USE                 GYRO_CONFIG_USE_GYRO_1
+//#define DEFAULT_GYRO_TO_USE				GYRO_CONFIG_USE_GYRO_1
+//#define DEFAULT_GYRO_TO_USE				GYRO_CONFIG_USE_GYRO_2
+#define DEFAULT_GYRO_TO_USE 				GYRO_CONFIG_USE_GYRO_BOTH
 #define GYRO_1_SPI_INSTANCE                 SPI1
-#define GYRO_1_ALIGN                        CW270_DEG_FLIP
+#define GYRO_1_ALIGN                        CW0_DEG
 #define GYRO_2_SPI_INSTANCE                 SPI4
-#define GYRO_2_ALIGN                        CW180_DEG_FLIP
-//#define FLASH_SPI_INSTANCE                  SPI1
+#define GYRO_2_ALIGN                        CW270_DEG
+
 #define MAX7456_SPI_INSTANCE                SPI2
-#define SDCARD_SPI_INSTANCE                 SPI2
-//#define SDCARD_DETECT_INVERTED
 
 #define PINIO1_CONFIG                       1
 #define PINIO1_BOX                          40
-#define BOX_USER1_NAME                      "CAM 1,2"
+#define BOX_USER1_NAME                      "USER A"
 #define PINIO2_CONFIG                       1
 #define PINIO2_BOX                          41
-#define BOX_USER2_NAME                      "VTX PWR"
+#define BOX_USER2_NAME                      "USER B"
+#define PINIO3_CONFIG                       1
+#define PINIO3_BOX                          42
+#define BOX_USER3_NAME                      "CAM SEL"
+#define PINIO4_CONFIG                       1
+#define PINIO4_BOX                          43
+#define BOX_USER4_NAME                      "10V EN"
+
+// user config defaults to match our design
+#define DEFAULT_RX_FEATURE			FEATURE_RX_SERIAL
+#define SERIALRX_UART				SERIAL_PORT_USART6
