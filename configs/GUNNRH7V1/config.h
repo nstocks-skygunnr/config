@@ -38,6 +38,7 @@
 #define USE_BARO_DPS368
 #define USE_SDCARD
 #define USE_MAX7456
+#define USE_MAG
 
 
 #define USE_GYRO_CLKIN
@@ -57,7 +58,7 @@
 #define UART8_TX_PIN         PE1
 #define UART8_RX_PIN         PE0
 
-#define I2C1_SCL_PIN         PB8
+#define I2C1_SCL_PIN         PB6
 #define I2C1_SDA_PIN         PB7
 #define I2C2_SCL_PIN         PB10
 #define I2C2_SDA_PIN         PB11
@@ -171,7 +172,7 @@
 
 #define DEFAULT_CURRENT_METER_SOURCE    CURRENT_METER_ADC
 #define DEFAULT_VOLTAGE_METER_SOURCE    VOLTAGE_METER_ADC
-#define DEFAULT_CURRENT_METER_SCALE     85
+#define DEFAULT_CURRENT_METER_SCALE     1000 
 #define DEFAULT_VOLTAGE_METER_SCALE     180
 #define BEEPER_INVERTED
 
