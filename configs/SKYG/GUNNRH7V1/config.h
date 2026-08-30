@@ -27,7 +27,7 @@
 #define MANUFACTURER_ID      SKYG
 
 // remove once timers + DMA are sorted out
-#define USE_TIMER_MAP_PRINT
+//#define USE_TIMER_MAP_PRINT
 
 #define USE_ACC
 #define USE_ACC_SPI_ICM42688P
@@ -39,11 +39,6 @@
 #define USE_SDCARD
 #define USE_MAX7456
 #define USE_MAG
-
-
-#define USE_GYRO_CLKIN
-#define GYRO_1_CLKIN_PIN     PA6
-#define GYRO_2_CLKIN_PIN     PB0
 
 #define UART1_TX_PIN         PA9
 #define UART1_RX_PIN         PA10
@@ -92,40 +87,21 @@
 
 #define SDCARD_DETECT_PIN    NONE 
 #define SDIO_DEVICE          SDIODEV_1
-#define SDIO_USE_4BIT        1
+#define SDIO_USE_4BIT        1 
+//#define SDIO_USE_4BIT        0 // for now - SDIO issues, maybe this helps?  May hurt BB 
 #define DEFAULT_BLACKBOX_DEVICE    BLACKBOX_DEVICE_SDCARD
 
-#define PINIO1_PIN           PE2	// J5 PIN6
-#define PINIO2_PIN           PE3    // J5 PIN7
-#define PINIO3_PIN           PD10    // Camera Select
-#define PINIO4_PIN           PD11    // V10P0 EN
+#define PINIO1_PIN           PE2  // J5 PIN6
+#define PINIO2_PIN           PE3  // J5 PIN7
+#define PINIO3_PIN           PD10 // Camera Select
+#define PINIO4_PIN           PD11 // V10P0 EN
 
-#define MAX7456_SPI_CS_PIN   PD4    // SPI4_NSS
+#define MAX7456_SPI_CS_PIN   PD4
 
-#define GYRO_1_EXTI_PIN      PB5   // ICM-42688-P INT
-#define GYRO_1_CS_PIN        PB2    // ICM-42688-P SPI6_NSS
-
-#define GYRO_2_EXTI_PIN      PB1   // ICM-45686 INT
-#define GYRO_2_CS_PIN        PE15   // ICM-45686 SPI3_NSS
-
-/*
-    PE9  - TIM1_CH1
-    PE11 - TIM1_CH2
-    PA0  - TIM2_CH1
-    PA1  - TIM2_CH2
-    PA2  - TIM2_CH3
-    PA3  - TIM2_CH4
-    PA6  - TIM3_CH1
-    PB5  - TIM3_CH2
-    PB0  - TIM3_CH3
-    PB1  - TIM3_CH4
-    PD12 - TIM4_CH1
-    PD13 - TIM4_CH2
-    PD14 - TIM4_CH3
-    PD15 - TIM4_CH4
-    PB14 - TIM12_CH1
-    PE5  - TIM15_CH1
-*/
+#define GYRO_1_EXTI_PIN      PB5
+#define GYRO_1_CS_PIN        PB2
+#define GYRO_2_EXTI_PIN      PB1 
+#define GYRO_2_CS_PIN        PE15 
 
 // ESC1 - TIM2
 #define MOTOR1_PIN           PA0
@@ -143,23 +119,52 @@
 #define SERVO1_PIN           PE9
 #define SERVO2_PIN           PE11
 
+// Gyro clocks
+#define GYRO1_CLKIN_PIN      PA6
+#define GYRO2_CLKIN_PIN      PB0
+#define USE_GYRO_CLKIN
+
 // others
 #define BEEPER_PIN           PB14
 #define LED_STRIP_PIN        PE5 
 
+/*
+    PE9  - TIM1_CH1  S1
+    PE11 - TIM1_CH2  S2
+    PA0  - TIM2_CH1  M1
+    PA1  - TIM2_CH2  M2
+    PA2  - TIM2_CH3  M3
+    PA3  - TIM2_CH4  M4
+    PA6  - TIM3_CH1  Gyro1 Clk
+    PB5  - TIM3_CH2
+    PB0  - TIM3_CH3  Gyro2 Clk
+    PB1  - TIM3_CH4
+    PD12 - TIM4_CH1  M5 
+    PD13 - TIM4_CH2  M6
+    PD14 - TIM4_CH3  M7
+    PD15 - TIM4_CH4  M8
+    PB14 - TIM12_CH1  BEEPER
+    PE5  - TIM15_CH1  LED
+*/
+
+// TIMER_PIN_MAP: instance, pin, mapping, DMA (-1 for none) 
+// mappings found in config file src/platform/stm32/timer_stm32h7xx.c
+
 #define TIMER_PIN_MAPPING \
-    TIMER_PIN_MAP( 0,  MOTOR1_PIN,       1, 0 ) \
-    TIMER_PIN_MAP( 1,  MOTOR2_PIN,       1, 1 ) \
-    TIMER_PIN_MAP( 2,  MOTOR3_PIN,       1, 2 ) \
-    TIMER_PIN_MAP( 3,  MOTOR4_PIN,       1, 3 ) \
-    TIMER_PIN_MAP( 4,  MOTOR5_PIN,       1, 4 ) \
-    TIMER_PIN_MAP( 5,  MOTOR6_PIN,       1, 5 ) \
-    TIMER_PIN_MAP( 6,  MOTOR7_PIN,       1, 6 ) \
-    TIMER_PIN_MAP( 7,  MOTOR8_PIN,       1, 7 ) \
-    TIMER_PIN_MAP( 8,  SERVO1_PIN,	 1, -1) \
-    TIMER_PIN_MAP( 9,  SERVO2_PIN,	 1, -1) \
-    TIMER_PIN_MAP( 10, LED_STRIP_PIN,	 1, 8) \
-    TIMER_PIN_MAP( 11, BEEPER_PIN,       2, -1)
+    TIMER_PIN_MAP( 0,  MOTOR1_PIN,       1, 0  ) \
+    TIMER_PIN_MAP( 1,  MOTOR2_PIN,       1, 1  ) \
+    TIMER_PIN_MAP( 2,  MOTOR3_PIN,       1, 2  ) \
+    TIMER_PIN_MAP( 3,  MOTOR4_PIN,       1, 3  ) \
+    TIMER_PIN_MAP( 4,  MOTOR5_PIN,       1, 4  ) \
+    TIMER_PIN_MAP( 5,  MOTOR6_PIN,       1, 5  ) \
+    TIMER_PIN_MAP( 6,  MOTOR7_PIN,       1, 6  ) \
+    TIMER_PIN_MAP( 7,  MOTOR8_PIN,       1, 7  ) \
+    TIMER_PIN_MAP( 8,  SERVO1_PIN,	 1, -1 ) \
+    TIMER_PIN_MAP( 9,  SERVO2_PIN,	 1, -1 ) \
+    TIMER_PIN_MAP( 10, GYRO1_CLKIN_PIN,  1, -1 ) \
+    TIMER_PIN_MAP( 11, GYRO2_CLKIN_PIN,  2, -1 ) \
+    TIMER_PIN_MAP( 12, LED_STRIP_PIN,	 1, 8  ) \
+    TIMER_PIN_MAP( 13, BEEPER_PIN,       2, -1 )
 
 #define ADC1_DMA_OPT		9
 #define ADC3_DMA_OPT       	10
