@@ -70,9 +70,9 @@
 #define SPI2_SDO_PIN         PC3
 #define SPI2_SCK_PIN         PD3
 
-#define SPI4_SDI_PIN         PE13
-#define SPI4_SDO_PIN         PE14
-#define SPI4_SCK_PIN         PE12
+//#define SPI4_SDI_PIN         PE13
+//#define SPI4_SDO_PIN         PE14
+//#define SPI4_SCK_PIN         PE12
 
 #define SDIO_CK_PIN          PC12
 #define SDIO_CMD_PIN         PD2
@@ -100,8 +100,8 @@
 
 #define GYRO_1_EXTI_PIN      PB5
 #define GYRO_1_CS_PIN        PB2
-#define GYRO_2_EXTI_PIN      PB1 
-#define GYRO_2_CS_PIN        PE15 
+//#define GYRO_2_EXTI_PIN      PB1 
+//#define GYRO_2_CS_PIN        PE15 
 
 // ESC1 - TIM2
 #define MOTOR1_PIN           PA0
@@ -121,7 +121,7 @@
 
 // Gyro clocks
 #define GYRO1_CLKIN_PIN      PA6
-#define GYRO2_CLKIN_PIN      PB0
+//#define GYRO2_CLKIN_PIN      PB0
 #define USE_GYRO_CLKIN
 
 // others
@@ -162,9 +162,27 @@
     TIMER_PIN_MAP( 8,  SERVO1_PIN,	 1, -1 ) \
     TIMER_PIN_MAP( 9,  SERVO2_PIN,	 1, -1 ) \
     TIMER_PIN_MAP( 10, GYRO1_CLKIN_PIN,  1, -1 ) \
+    TIMER_PIN_MAP( 11, LED_STRIP_PIN,	 1, 8  ) \
+    TIMER_PIN_MAP( 12, BEEPER_PIN,       2, -1 )
+
+// Below is the table for when gyro 2 is fixed
+/*
+#define TIMER_PIN_MAPPING \
+    TIMER_PIN_MAP( 0,  MOTOR1_PIN,       1, 0  ) \
+    TIMER_PIN_MAP( 1,  MOTOR2_PIN,       1, 1  ) \
+    TIMER_PIN_MAP( 2,  MOTOR3_PIN,       1, 2  ) \
+    TIMER_PIN_MAP( 3,  MOTOR4_PIN,       1, 3  ) \
+    TIMER_PIN_MAP( 4,  MOTOR5_PIN,       1, 4  ) \
+    TIMER_PIN_MAP( 5,  MOTOR6_PIN,       1, 5  ) \
+    TIMER_PIN_MAP( 6,  MOTOR7_PIN,       1, 6  ) \
+    TIMER_PIN_MAP( 7,  MOTOR8_PIN,       1, 7  ) \
+    TIMER_PIN_MAP( 8,  SERVO1_PIN,	 1, -1 ) \
+    TIMER_PIN_MAP( 9,  SERVO2_PIN,	 1, -1 ) \
+    TIMER_PIN_MAP( 10, GYRO1_CLKIN_PIN,  1, -1 ) \
     TIMER_PIN_MAP( 11, GYRO2_CLKIN_PIN,  2, -1 ) \
     TIMER_PIN_MAP( 12, LED_STRIP_PIN,	 1, 8  ) \
     TIMER_PIN_MAP( 13, BEEPER_PIN,       2, -1 )
+*/
 
 #define ADC1_DMA_OPT		9
 #define ADC3_DMA_OPT       	10
@@ -181,13 +199,13 @@
 //#define DEFAULT_VOLTAGE_METER_SCALE     180
 #define BEEPER_INVERTED
 
-//#define DEFAULT_GYRO_TO_USE		GYRO_CONFIG_USE_GYRO_1
+#define DEFAULT_GYRO_TO_USE		GYRO_CONFIG_USE_GYRO_1
 //#define DEFAULT_GYRO_TO_USE		GYRO_CONFIG_USE_GYRO_2
-#define DEFAULT_GYRO_TO_USE 		GYRO_CONFIG_USE_GYRO_BOTH
+//#define DEFAULT_GYRO_TO_USE 		GYRO_CONFIG_USE_GYRO_BOTH
 #define GYRO_1_SPI_INSTANCE             SPI1
 #define GYRO_1_ALIGN                    CW0_DEG
-#define GYRO_2_SPI_INSTANCE             SPI4
-#define GYRO_2_ALIGN                    CW270_DEG
+//#define GYRO_2_SPI_INSTANCE             SPI4
+//#define GYRO_2_ALIGN                    CW270_DEG
 
 #define MAX7456_SPI_INSTANCE            SPI2
 
