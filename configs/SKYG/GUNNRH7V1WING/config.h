@@ -31,6 +31,8 @@
 
 #define USE_ACC
 #define USE_ACC_SPI_ICM42688P
+#define USE_ADC
+#define USE_ADC_INTERNAL
 #define USE_GYRO
 #define USE_GYRO_SPI_ICM42688P
 #define USE_BARO
@@ -88,14 +90,15 @@
 
 #define ADC_VBAT_PIN         PA7
 #define ADC_CURR_PIN         PC5
-//#define ADC_EXTERNAL1_PIN    PC4    // Airspeed
+#define ADC_RSSI_PIN         PC4 // USER ADC
+#define ADC_EXTERNAL1_PIN    PC1 // ESC2 ISENSE
 
-#define SDCARD_DETECT_PIN    NONE 
+#define SDCARD_DETECT_PIN    NONE
 #define SDIO_DEVICE          SDIODEV_1
 #define SDIO_USE_4BIT        1
 #define DEFAULT_BLACKBOX_DEVICE    BLACKBOX_DEVICE_SDCARD
 
-#define PINIO1_PIN           PE2	// J5 PIN6
+#define PINIO1_PIN           PE2    // J5 PIN6
 #define PINIO2_PIN           PE3    // J5 PIN7
 #define PINIO3_PIN           PD10    // Camera Select
 #define PINIO4_PIN           PD11    // V10P0 EN
@@ -143,48 +146,51 @@
 
 // others
 #define BEEPER_PIN           PB14
-#define LED_STRIP_PIN        PE5 
+#define LED_STRIP_PIN        PE5
 
 #define TIMER_PIN_MAPPING \
-    TIMER_PIN_MAP( 0,  MOTOR1_PIN,       1, 0 ) \
-    TIMER_PIN_MAP( 1,  MOTOR2_PIN,       1, 1 ) \
-    TIMER_PIN_MAP( 2,  MOTOR3_PIN,       1, 2 ) \
-    TIMER_PIN_MAP( 3,  MOTOR4_PIN,       1, 3 ) \
-    TIMER_PIN_MAP( 4,  SERVO1_PIN,       1, 4 ) \
-    TIMER_PIN_MAP( 5,  SERVO2_PIN,       1, 5 ) \
-    TIMER_PIN_MAP( 6,  SERVO3_PIN,       1, 6 ) \
-    TIMER_PIN_MAP( 7,  SERVO4_PIN,       1, 7 ) \
-    TIMER_PIN_MAP( 8,  SERVO5_PIN,	 1, -1) \
-    TIMER_PIN_MAP( 9,  SERVO6_PIN,	 1, -1) \
-    TIMER_PIN_MAP( 10, LED_STRIP_PIN,	 1, 8) \
-    TIMER_PIN_MAP( 11, BEEPER_PIN,       2, -1)
+    TIMER_PIN_MAP( 0,  MOTOR1_PIN,      1,  0) \
+    TIMER_PIN_MAP( 1,  MOTOR2_PIN,      1,  1) \
+    TIMER_PIN_MAP( 2,  MOTOR3_PIN,      1,  2) \
+    TIMER_PIN_MAP( 3,  MOTOR4_PIN,      1,  3) \
+    TIMER_PIN_MAP( 4,  SERVO1_PIN,      1,  4) \
+    TIMER_PIN_MAP( 5,  SERVO2_PIN,      1,  5) \
+    TIMER_PIN_MAP( 6,  SERVO3_PIN,      1,  6) \
+    TIMER_PIN_MAP( 7,  SERVO4_PIN,      1,  7) \
+    TIMER_PIN_MAP( 8,  SERVO5_PIN,      1, -1) \
+    TIMER_PIN_MAP( 9,  SERVO6_PIN,      1, -1) \
+    TIMER_PIN_MAP( 10, LED_STRIP_PIN,   1,  8) \
+    TIMER_PIN_MAP( 11, BEEPER_PIN,      2, -1)
 
-#define ADC1_DMA_OPT		9
-#define ADC3_DMA_OPT       	10
-#define TIMUP3_DMA_OPT     	11
-#define TIMUP4_DMA_OPT     	12
-#define TIMUP5_DMA_OPT     	13
+#define ADC1_DMA_OPT            9
+#define ADC2_DMA_OPT           10
+#define ADC3_DMA_OPT           11
+#define ADC4_DMA_OPT           12
+#define ADC5_DMA_OPT           13
+#define TIMUP3_DMA_OPT         14
+#define TIMUP4_DMA_OPT         15
+#define TIMUP5_DMA_OPT         16
 
-#define MAG_I2C_INSTANCE		I2CDEV_1
-#define BARO_I2C_INSTANCE               I2CDEV_2
+#define MAG_I2C_INSTANCE            I2CDEV_1
+#define BARO_I2C_INSTANCE           I2CDEV_2
 
 #define DEFAULT_CURRENT_METER_SOURCE    CURRENT_METER_ADC
 #define DEFAULT_VOLTAGE_METER_SOURCE    VOLTAGE_METER_ADC
-#define DEFAULT_CURRENT_METER_SCALE     1000 
+#define DEFAULT_CURRENT_METER_SCALE     100 // 10 mV/A
 //#define DEFAULT_VOLTAGE_METER_SCALE     180
 #define BEEPER_INVERTED
 
-//#define DEFAULT_GYRO_TO_USE		GYRO_CONFIG_USE_GYRO_1
-//#define DEFAULT_GYRO_TO_USE		GYRO_CONFIG_USE_GYRO_2
-#define DEFAULT_GYRO_TO_USE 		GYRO_CONFIG_USE_GYRO_BOTH
+//#define DEFAULT_GYRO_TO_USE        GYRO_CONFIG_USE_GYRO_1
+//#define DEFAULT_GYRO_TO_USE        GYRO_CONFIG_USE_GYRO_2
+#define DEFAULT_GYRO_TO_USE         GYRO_CONFIG_USE_GYRO_BOTH
 #define GYRO_1_SPI_INSTANCE             SPI1
 #define GYRO_1_ALIGN                    CW0_DEG
 #define GYRO_2_SPI_INSTANCE             SPI4
-#define GYRO_2_ALIGN                    CW270_DEG
+#define GYRO_2_ALIGN                    CW90_DEG
 
 #define MAX7456_SPI_INSTANCE            SPI2
 
-#define PINIO1_CONFIG		1
+#define PINIO1_CONFIG           1
 #define PINIO1_BOX              40
 #define BOX_USER1_NAME          "USER A"
 #define PINIO2_CONFIG           1
@@ -198,6 +204,6 @@
 #define BOX_USER4_NAME          "10V EN"
 
 // user config defaults to match our design
-#define DEFAULT_RX_FEATURE	FEATURE_RX_SERIAL
-#define SERIALRX_UART		SERIAL_PORT_USART6
+#define DEFAULT_RX_FEATURE      FEATURE_RX_SERIAL
+#define SERIALRX_UART           SERIAL_PORT_USART6
 
